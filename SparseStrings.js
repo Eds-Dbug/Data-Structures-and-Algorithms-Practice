@@ -31,7 +31,7 @@ function binarySearch(arr, low, high, s) {
   
   if(arr[mid] == s) {
     return mid;
-  } else if(arr[mid] < s ) {
+  } else if(arr[mid] > s ) {
     return binarySearch(arr,low ,mid -1, s);
   } else {
     return binarySearch(arr, mid + 1 ,high, s);
