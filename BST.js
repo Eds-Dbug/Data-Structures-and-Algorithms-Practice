@@ -189,6 +189,27 @@
  * 
  */
 
+/**
+ * DFS and BFS:
+ * DFS: 
+ * - To traverse binary trees with depth-first search, perform the following operations at each node:[3][4]:
+ * - If the current node is empty then return.
+ * - Execute the following three operations in a certain order:
+ * - N: Visit the current node.
+ * 
+ * Pre-order, NLR:
+ * Preorder traversal is used to create a copy of the tree. Preorder traversal is also used to get prefix expressions on an expression tree.
+ *  
+ * Post-order, LRN:
+ * - Postorder traversal is used to delete the tree. Please see the question for the deletion of a tree for details. Postorder traversal is also useful to get the postfix expression of an expression tree
+ * 
+ * In-order, LNR:
+ * - In the case of binary search trees (BST), Inorder traversal gives nodes in non-decreasing order. To get nodes of BST in non-increasing order, a variation of Inorder traversal where Inorder traversal is reversed can be used. 
+ * 
+*/
+
+
+
 class Node {
   constructor(key) {
     this.key = key;
@@ -197,19 +218,86 @@ class Node {
   }
 }
 
-function insert(node, key) {
+let root = null;
+
+function insertion(insertionRoot, key) {
   // if there is no node than add one with the given key
-  if (!node) {
-    return new node(key);
+  //console.log('what is root?', root)
+  if (!insertionRoot) {
+    insertionRoot = new Node(key);
+    //its the params insertionRoot
+    return insertionRoot;
   }
   //All the diffrent conditions for keys
   // key is for new value
-  // node here is probably root
-  if(node.key > key) {
-    node.left = insert(node.left,key);
+  // node here is probably insertionRoot
+  if(insertionRoot.key > key) {
+    insertionRoot.left = insertion(insertionRoot.left,key);
+    
   }
-  if (node.key < key) {
-    node.right = insert(node.right, key);
+  if (insertionRoot.key < key) {
+    insertionRoot.right = insertion(insertionRoot.right, key);
+  }
+  return insertionRoot;
+}
+
+// A utility function to
+// do inorder traversal of BST
+function inorder(root)
+{
+  if (root) {
+    inorder(root.left);
+    console.log(`inorder ${root.key}`)
+    inorder(root.right);
   }
 }
+
+function preorder(root) {
+  if(root ) {
+    //the node itself
+    console.log(`preorder: ${root.key}`);
+    //traverse left tree
+    preorder(root.left);
+    preorder(root.right);
+  }
+}
+
+function postorder(root) {
+  if (root) {
+    postorder(root.left);
+    postorder(root.right);
+    console.log(`postorder ${root.key}`)
+ }
+}
+
+function insert(key) {
+  root = insertion(root,key);
+}
+
+
+// for(let i = 1; i < 11; i++ ) {
+//   //console.log('loop running?')
+//   insert(i);
+// }
+
+
+/* Let us create following BST
+      50
+    /     \
+  30      70
+  /  \    /  \
+20   40  60   80 */
+
+insert(50);
+insert(30);
+insert(20);
+insert(40);
+insert(70);
+insert(60);
+insert(80);
+
+//inorder(root);
+//preorder(root);
+postorder(root);
+
 
