@@ -17,10 +17,22 @@ function subSeq(str1, str2) {
 
 //recursive approach
 function subSeq1(str1, str2, m, n) {
-  
+  //base cases
+  if(m === 0) {
+    return true;
+  }
+  if(n === 0) {
+    return false;
+  }
+  //if last 2 chars are same recurse
+  if(str1[m-1] === str2[n-1]) {
+    return subSeq1(str1, str2, m-1, n-1);
+  }
+    return subSeq1(str1, str2, m, n - 1);
 }
 
-let s1 = 'geeksforgeekss';
+let s1 = 'geeksforgeek';
 let s2 = 'geeksforgeeks';
 
-console.log(subSeq(s1,s2));
+//console.log(subSeq(s1,s2));
+console.log(subSeq1(s1, s2, s1.length, s2.length));
