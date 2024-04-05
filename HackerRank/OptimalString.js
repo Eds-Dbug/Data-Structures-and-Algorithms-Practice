@@ -1,0 +1,1 @@
+console.log(Array(2).fill().map(()=> Array(2+1).fill(0)))
