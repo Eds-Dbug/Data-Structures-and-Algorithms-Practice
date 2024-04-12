@@ -38,6 +38,14 @@ class LL {
             return node;
         }
     }
+
+    print() {
+        let node = this.head;
+        while(node){
+            console.log(node.data);
+            node = node.next;
+        }
+    }
 }
 
 let n5 = new Node(5)
@@ -48,5 +56,5 @@ let n1 = new Node(1,n2)
 
 let list = new LL(n1);
 
-console.log(list.size()) //returns 5
+console.log(list.print()) //returns 5
 
