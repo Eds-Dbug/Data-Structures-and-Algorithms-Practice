@@ -5,11 +5,11 @@ class DynamicArr {
         this.array = new Array(this.maxCapacity);
     }
 
-    addElement() {
+    addElement(element) {
         if(this.currentLength == this.maxCapacity) {
             this.resize();
         }
-
+        this.array.push(element);
     }
 
     deleteElement() {
