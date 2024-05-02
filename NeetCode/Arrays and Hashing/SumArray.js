@@ -5,6 +5,7 @@ function productExceptSelf(nums) {
     
     // First pass to collect products of all elements before the current one
     for (let i = 0; i < nums.length; i++) {
+        //saves the result index location
         result[i] = prefix;
         prefix *= nums[i];
         console.log(`Step 1 - Index ${i}: prefix=${prefix}, result=[${result.join(', ')}]`);
