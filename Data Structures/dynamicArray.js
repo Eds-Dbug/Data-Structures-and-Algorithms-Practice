@@ -9,11 +9,11 @@ class DynamicArr {
         if(this.currentLength == this.maxCapacity) {
             this.resize();
         }
-        this.array.push(element);
+        this.array[this.currentLength++] = element;
     }
 
-    deleteElement() {
-
+    pop() {
+        
     }
 
     resize() {
@@ -27,6 +27,27 @@ class DynamicArr {
     }
 
     getIndex(i) {
+        return this.array[i];
+    }
 
+    getSize(){
+        return this.currentLength;
+    }
+
+    getCapacity() {
+        return this.maxCapacity;
+    }
+
+    print() {
+        return `[${this.array.toString()}]`;
     }
 }
+
+let arr = new DynamicArr;
+
+arr.addElement(1);
+arr.addElement(33);
+console.log(arr.getCapacity());
+console.log(arr.getSize())
+console.log(arr.print())
+
