@@ -7,16 +7,16 @@ class DynamicArr {
 
     addElement(element) {
         if(this.currentLength == this.maxCapacity) {
-            this.resize();
+            this.grow();
         }
         this.array[this.currentLength++] = element;
     }
 
     pop() {
-        
+
     }
 
-    resize() {
+    grow() {
         let newArr = new Array(this.maxCapacity * 2);
         this.maxCapacity *= 2;
         for(let i=0; i < this.currentLength; i++) {
@@ -24,6 +24,10 @@ class DynamicArr {
         } 
         this.array = null;
         this.array = newArr;
+    }
+
+    shrink() {
+        
     }
 
     getIndex(i) {
