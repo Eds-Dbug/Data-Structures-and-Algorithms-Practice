@@ -13,6 +13,13 @@ class DynamicArr {
     }
 
     pop() {
+        // Make last entry a 0 
+        this.array[this.currentLength -1] = 0;
+        this.currentLength --;
+        //reduce the size
+        if(this.currentLength == Math.floor(this.maxCapacity/2)){
+            this.shrink();
+        }
 
     }
 
@@ -22,12 +29,18 @@ class DynamicArr {
         for(let i=0; i < this.currentLength; i++) {
             newArr[i] = this.array[i]
         } 
-        this.array = null;
+     
         this.array = newArr;
     }
 
     shrink() {
+        let newArr = new Array(this.maxCapacity/2);
+        this.maxCapacity /= 2;
+        for(let i=0; i < this.currentLength; i++) {
+            newArr[i] = this.array[i]
+        }
         
+        this.array = newArr;
     }
 
     getIndex(i) {
@@ -35,11 +48,11 @@ class DynamicArr {
     }
 
     getSize(){
-        return this.currentLength;
+        return `Current length is: ${this.currentLength}`;
     }
 
     getCapacity() {
-        return this.maxCapacity;
+        return `Max capacity is: ${this.maxCapacity}`;
     }
 
     print() {
@@ -49,9 +62,15 @@ class DynamicArr {
 
 let arr = new DynamicArr;
 
-arr.addElement(1);
-arr.addElement(33);
+for(let i=0; i<9;i++){
+    arr.addElement(i);
+}
+for(let i=0;i<3;i++){
+    arr.pop();
+}
+//arr.addElement(55);
 console.log(arr.getCapacity());
 console.log(arr.getSize())
 console.log(arr.print())
+
 
