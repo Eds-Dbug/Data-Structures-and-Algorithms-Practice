@@ -1,6 +1,7 @@
 class Solution {
     constructor(strs){
         this.encodeResult = "";
+        this.decodedResult = [];
         this.strs = strs;
     }
     
@@ -8,8 +9,15 @@ class Solution {
      * @param {string[]} strs
      * @returns {string}
      */
-
     
+    showEncoded() {
+        return this.encodeResult
+    } 
+
+    showDecoded() {
+        return this.decodedResult
+    }
+
     encode() {
         let result = "";
         for(let s of this.strs) {
@@ -18,16 +26,30 @@ class Solution {
         this.encodeResult = result;
     }
 
-    showEncoded() {
-        return this.encodeResult
-    }
-
     /**
      * @param {string} str
      * @returns {string[]}
      */
-    decode(str) {
-        
+    decode() {
+        let result = [];
+        let i = 0;
+        //Loop through the word length
+        while (i < this.encodeResult.length){
+            //j is the end index where i is the begining index.
+            let j = i;
+            //move the end index to find the number
+            while (this.encodeResult[j] !== '#') {
+                j++;
+            }
+            let length = parseInt(this.encodeResult.substring(i,j),10)
+            //move i up by 1
+            //j + 1 only returns a value does not change a state
+            i = j+1;
+            j = i + length;
+            result.push(this.encodeResult.substring(i,j))
+            i = j
+        }
+        this.decodedResult = result;
     }
 }
 
@@ -35,3 +57,5 @@ let solution1 = new Solution(["neet","code","love","you"]);
 
 solution1.encode()
 console.log(solution1.showEncoded())
+solution1.decode()
+console.log(solution1.showDecoded())
