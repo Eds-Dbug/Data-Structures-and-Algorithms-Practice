@@ -42,9 +42,10 @@ class Solution {
                 j++;
             }
             let length = parseInt(this.encodeResult.substring(i,j),10)
-            //move i up by 1
+            //move j up by 1
+            j ++;
             //j + 1 only returns a value does not change a state
-            i = j+1;
+            i = j;
             j = i + length;
             result.push(this.encodeResult.substring(i,j))
             i = j
