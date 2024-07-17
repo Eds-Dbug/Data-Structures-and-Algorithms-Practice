@@ -7,8 +7,15 @@ var removeDuplicates = function(nums) {
     let l = 1;
     
     for(let r = 1; i < nums.length; r++) {
-        
+        //If the right pointer is the same as prev val then set the left as the current value
+        if(nums[r] === nums[r-1]){
+            nums[l] = nums[r];
+            // increment the left
+            l++;
+        }
     }
+
+    return l;
 };
 
 console.log(`Remove Duplicates ${removeDuplicates([1,1,2])}`);
